@@ -45,6 +45,7 @@
                   <th scope="col">Song</th>
                   <th scope="col">Artist</th>
                   <th scope="col">Genre</th>
+                  <th scope="col">Album</th>
                   <th scope="col" class="text-center">Action</th>
                 </tr>
               </thead>
