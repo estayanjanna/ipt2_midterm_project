@@ -52,15 +52,51 @@
                 <?php if ($music->num_rows > 0): ?>
                   <?php while($row = $music->fetch_assoc()): ?>
                     <tr>
-                      <th scope="row"><?php echo $row['id']; ?></th>
-                      <td><?php echo $row['song']; ?></td>
-                      <td><?php echo $row['artist']; ?></td>
-                      <td><?php echo $row['genre']; ?></td>
-                      <td><?php echo $row['album']; ?></td>
+                      <th scope="row"><?php echo $row['ID']; ?></th>
+                      <td><?php echo $row['Song']; ?></td>
+                      <td><?php echo $row['Artist']; ?></td>
+                      <td><?php echo $row['Genre']; ?></td>
+                      <td><?php echo $row['Album']; ?></td>
                       <td class="d-flex justify-content-center">
                         <button class="btn btn-success btn-sm mx-1">Edit</button>
-                        <button class="btn btn-primary btn-sm mx-1" title="View Employee Information" data-bs-toggle="modal" data-bs-target="#editInfo">View</button>
-                        <button class="btn btn-danger btn-sm mx-1">Delete</button>
+                        
+                        <!-- View Button -->
+                        <button class="btn btn-primary btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#ViewModal<?php echo $row['ID']; ?>">View</button>
+
+                            <div class="modal fade" id="ViewModal<?php echo $row['ID']; ?>" tabindex="-1" aria-labelledby="ViewModalLabel" aria-hidden="true">
+
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">View Music Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                   <div class="mb-3">
+                                    <label class="form-label">Song</label>
+                                    <input type="text" class="form-control" value="<?php echo $row['Song']; ?>" disabled>
+                                   </div>
+                                   <div class="mb-3">
+                                    <label class="form-label">Artist</label>
+                                    <input type="text" class="form-control" value="<?php echo $row['Artist']; ?>" disabled>
+                                   </div>
+                                   <div class="mb-3">
+                                    <label class="form-label">Genre</label>
+                                    <input type="text" class="form-control" value="<?php echo $row['Genre']; ?>" disabled>
+                                   </div>
+                                   <div class="mb-3">
+                                    <label class="form-label">Album</label>
+                                    <input type="text" class="form-control" value="<?php echo $row['Album']; ?>" disabled>
+                                   </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                           </div>
+                       
+                        <button class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['ID']; ?>">Delete</button>
                       </td>
                     </tr>
                   <?php endwhile; ?>
