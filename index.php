@@ -95,9 +95,26 @@
                                   </div>
                                 </div>
                               </div>
-                           </div>
+                            </div>
                        
                         <button class="btn btn-danger btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['ID']; ?>">Delete</button>
+                        <div class="modal fade" id="deleteModal<?php echo $row['ID']; ?>" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-body text-center">
+                                <h5>Are you sure you want to delete this music?</h5>
+                                <h6>This action cannot be undone.</h6>
+                              </div>
+                              <div class="modal-footer d-flex justify-content-center">
+                                <form action="database/delete.php" method="POST">
+                                  <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                  <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   <?php endwhile; ?>
