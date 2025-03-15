@@ -4,8 +4,18 @@
   include('partials\sidebar.php');
 
   $sql = "SELECT * FROM music";
-  $music = $conn->query($sql);
-  // Your PHP BACK CODE HERE
+
+  if (!empty($_GET['search'])) {
+      $search = $_GET['search'];
+      $sql = "SELECT * FROM music WHERE Song LIKE '%$search%' OR Artist LIKE '%$search%' OR Genre LIKE '%$search%' OR Album LIKE '%$search%'";
+  }
+  
+  $music = $conn->query($sql);  
+  $status = '';
+  if (isset($_SESSION['status'])) {
+    $status = $_SESSION['status'];
+    unset($_SESSION['status']);
+  }
 
 ?>
 

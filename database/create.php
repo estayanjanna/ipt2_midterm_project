@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $genre = $_POST['genre'];
   $album = $_POST['album']; // Add this line to get the album value from the form
 
-  $sql = "INSERT INTO music (song, artist, genre, album) VALUES ('$song', '$artist', '$genre', '$album')";
+  $sql = "INSERT INTO music (Song, Artist, Genre, Album) VALUES ('$song', '$artist', '$genre', '$album')";
 
   if ($conn->query($sql) === TRUE) {
       echo "New record created successfully";
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h5 class="card-title">Add New Music</h5>
             
             <!-- Add Music Form -->
-            <form method="POST" action="create.php"></form>
+            <form method="POST" action="create.php">
             <div class="mb-3">
                 <label for="song" class="form-label">Song</label>
                 <input type="text" class="form-control" id="song" name="song">
