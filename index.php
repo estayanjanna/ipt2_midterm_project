@@ -69,7 +69,53 @@
                       <td><?php echo $row['Genre']; ?></td>
                       <td><?php echo $row['Album']; ?></td>
                       <td class="d-flex justify-content-center">
-                        <button class="btn btn-success btn-sm mx-1">Edit</button>
+
+                        <button 
+                          class="btn btn-success btn-sm mx-1 edit-btn" 
+                          data-bs-toggle="modal" 
+                          data-bs-target="#editMusicModal" 
+                          data-id="<?= $row['ID']; ?>"
+                          data-song="<?= $row['Song']; ?>"
+                          data-artist="<?= $row['Artist']; ?>"
+                          data-genre="<?= $row['Genre']; ?>"
+                          data-album="<?= $row['Album']; ?>">
+                          Edit
+                        </button>
+                          <div class="modal fade" id="editMusicModal" tabindex="-1" aria-labelledby="editMusicModalLabel" aria-hidden="true">
+                           <div class="modal-dialog">
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <h5 class="modal-title" id="editStudentMusicLabel">Edit Music</h5>
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                               </div>
+                               <div class="modal-body">
+                                 <form id="edit-student-form" method="POST" action="database/update.php">
+                                  <input type="hidden" name="ID" id="edit-id">
+                                  <div class="mb-3">
+                                   <label for="edit-song" class="form-label">Song</label>
+                                   <input type="text" class="form-control" name="Song" id="edit-song">
+                                  </div>
+                                  <div class="mb-3">
+                                  <label for="edit-artist" class="form-label">Artist</label>
+                                   <input type="text" class="form-control" name="Artist" id="edit-artist">
+                                  </div>
+                                  <div class="mb-3">
+                                   <label for="edit-genre" class="form-label">Genre</label>
+                                   <input type="text" class="form-control" name="Genre" id="edit-genre">
+                                  </div>
+                                  <div class="mb-3">
+                                   <label for="edit-album" class="form-label">Album</label>
+                                   <input type="text" class="form-control" name="Album" id="edit-album">
+                                  </div>
+                                  <div class="modal-footer">
+                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                   <button type="submit" class="btn btn-primary">Update</button>
+                                  </div>
+                                </form>
+                               </div>
+                             </div>
+                           </div>
+                          </div>
                         
                         <!-- View Button -->
                         <button class="btn btn-primary btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#ViewModal<?php echo $row['ID']; ?>">View</button>
@@ -171,6 +217,32 @@
       </div>
     </div>
   </section>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const editButtons = document.querySelectorAll(".edit-btn");
+
+    editButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // makuwa data hali sa button
+            const id = this.getAttribute("data-id");
+            const song = this.getAttribute("data-song");
+            const artist = this.getAttribute("data-artist");
+            const genre = this.getAttribute("data-genre");
+            const album = this.getAttribute("data-album");
+
+            // okay na
+            document.getElementById("edit-id").value = id;
+            document.getElementById("edit-song").value = song;
+            document.getElementById("edit-artist").value = artist;
+            document.getElementById("edit-genre").value = genre;
+            document.getElementById("edit-album").value = album;
+        });
+    });
+});
+</script>
+
+
 
 </main><!-- End #main -->
 <?php
