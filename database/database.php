@@ -2,7 +2,7 @@
 $Servername = "localhost";
 $Username = "root";
 $Password = "";
-$Database = "music_database";
+$Database = "ipt2_midterm_project";
 
 $conn=new mysqli("$Servername","$Username","$Password","$Database");
 if ($conn->connect_error) {
